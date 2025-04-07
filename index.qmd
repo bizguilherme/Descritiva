@@ -1,0 +1,311 @@
+---
+title: "Resumo de Dados"
+format: revealjs
+editor: visual
+author: "Guilherme Biz"
+footer: "<gbiz@uel.br>" 
+code-fold: true
+---
+
+## Áreas da Estatística
+
+<br>
+
+::: {style="text-align: justify;"}
+**Descritiva**: é a área da estatística que aplica várias técnicas para descrever e resumir um conjunto de dados. Os elementos básicos para esta análise são: tabelas, gráficos e medidas numéricas.
+
+<br>
+
+**Indutiva**: cuida da análise e interpretação dos dados. Tem como objetivo tirar conclusões sobre a população com base nos resultados observados em amostras extraídas dessa população.
+:::
+
+## Variáveis e Dados
+
+<br>
+
+::: {style="text-align: justify;"}
+**Variável**: é um atributo, mensurável ou não, sujeito à variação quantitativa ou qualitativa, no interior de uma população ou amostra.
+
+<br>
+
+**Dados**: são informações inerentes às variáveis que caracterizam os elementos que constituem a população ou a amostra em estudo.
+:::
+
+## Tipos de variáveis
+
+::: {style="text-align: justify;font-size: 0.8em;"}
+-   Qualitativa
+
+    -   Nominal - [Gênero, estado civil, tipo de grão (dentado,semidentado e semiduro)...]{style="color: red;"}
+
+    -   Ordinal - [Grau de escolaridade, resistência à ferrugem (r$>$mr$>$ms$>$s)]{style="color: red;"}[^1][...]{style="color: red;"}
+
+-   Quantitativa
+
+    -   Discreta - [Nº de filhos, nº de grãos por vagem e nº de vagens por planta...]{style="color: red;"}
+
+    -   Contínua - [Peso, Altura da planta e altura da espiga...]{style="color: red;"}
+:::
+
+[^1]: r=resistente; mr=moderadamente resistente; ms=moderadamente susceptível; s=susceptível
+
+## Conjunto de dados
+
+<embed src="https://www.uel.br/pessoal/biz/pages/arquivos/Agronomia/dados/dados_milho.pdf" width="100%" height="600px">
+
+## Importando os dados no software R
+
+<br>
+
+```{r echo=TRUE, results='markup'}
+#| paged-print: false
+dados=read.table("https://www.uel.br/pessoal/biz/pages/arquivos/Agronomia/dados/dados_milho.txt",head=T)
+head(dados)
+```
+
+------------------------------------------------------------------------
+
+::: {style="text-align: justify;"}
+<br>
+
+-   **Dados Brutos**: são dados obtidos diretamente da pesquisa, sem terem passados por nenhum processo de síntese ou análise.
+
+    <br>
+
+-   **Rol:** são os dados colocados em ordem crescente.
+:::
+
+------------------------------------------------------------------------
+
+## Dados Brutos
+
+```{r echo=FALSE}
+library(huxtable)
+alt=dados$Altura_espiga
+dim(alt)=c(4,8)
+
+alt=as_hux(alt)
+top_border(alt)[1,]=0.4
+bottom_border(alt)[4,]=0.4
+set_caption(alt, "Alturas de espigas (cm) de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988")
+alt  
+
+```
+
+## Rol
+
+```{r echo=FALSE}
+library(huxtable)
+alt=sort(dados$Altura_espiga)
+alt=matrix(alt,4,8,byrow=T)
+
+alt=as_hux(alt)
+top_border(alt)[1,]=0.4
+bottom_border(alt)[4,]=0.4
+set_caption(alt, "Alturas de espigas (cm) de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988")
+alt  
+```
+
+## Representação Tabular
+
+::: {style="text-align: justify;font-size: 0.9em;"}
+<br>
+
+-   **Título**: índica a natureza do fato estudado, as variáveis escolhidas na análise do fato, o local e época.
+
+-   **Corpo**: é o conjunto de linhas e colunas que contém, respectivamente, as séries horizontais e verticais de informações.
+
+-   **Cabeçalho**: designa a natureza do conteúdo de cada coluna.
+
+-   **Coluna indicadora**: mostra natureza do conteúdo de cada linha.
+:::
+
+------------------------------------------------------------------------
+
+![](index_files/images/tabela.png)
+
+------------------------------------------------------------------------
+
+### Distribuições de frequências de variáveis qualitativas e representações gráficas
+
+<br>
+
+::: {style="text-align: justify;font-size: 0.9em;"}
+-   Uma tabela de **distribuição de frequências** é a correspondências entre as categorias ou valores de uma variável e as respectivas frequências que foram observadas.
+
+    <br>
+
+-   Para esse tipo de variável os gráficos mais utilizados são: colunas, barras e de setores.
+:::
+
+------------------------------------------------------------------------
+
+::: {style="text-align: justify;font-size: 0.8em;"}
+Tabela: Distribuição de Frequências da resistência à ferrugem de 32 híbridos de milho recomendados para a região de Chapecó, safra- 1987/88.
+
+| Resitência à ferrugem | Frequência absoluta$(n_i)$ | Frequência relativa $(f_i)$ | Porcentagem (%) | Porcentagem acumulada |
+|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+| r | 10 | 0,3125 | 31,25 | 31,25 |
+| mr | 6 | 0,1875 | 18,75 | 50,00 |
+| ms | 9 | 0,2813 | 28,13 | 78,13 |
+| s | 7 | 0,2187 | 21,87 | 100,00 |
+| Total | 32 | 1 | 100 | $-$ |
+:::
+
+```{r echo=T, results='hide',fig.show='hide'}
+require(epiDisplay)
+tab1(factor(dados$Resistencia,levels = c("r","mr","ms","s")))
+```
+
+------------------------------------------------------------------------
+
+### Gráficos para variáveis qualitativas - Colunas
+
+```{r echo=TRUE, fig.align='center'}
+barplot(table(dados$Resistencia)[c("r","mr","ms","s")],xlab="Resistência à ferrugem",ylab="Frequências",col="green4",density=50,ylim=c(0,12))
+abline(h=0)
+```
+
+::: {style="text-align: justify;font-size: 0.8em;"}
+**Figura**: Resistência à ferrugem de híbridos de milho, para a região de Chapecó, 1987/88
+:::
+
+------------------------------------------------------------------------
+
+### Gráficos para variáveis qualitativas - Barras
+
+```{r echo=TRUE, fig.align='center'}
+barplot(table(dados$Resistencia)[c("r","mr","ms","s")],xlab="Resistência à ferrugem",ylab="Frequências",col="green4",density=50,xlim=c(0,12),horiz = T)
+abline(v=0)
+```
+
+::: {style="text-align: justify;font-size: 0.8em;"}
+**Figura**: Resistência à ferrugem de híbridos de milho, para a região de Chapecó, 1987/88
+:::
+
+------------------------------------------------------------------------
+
+### Gráficos para variáveis qualitativas - Setores
+
+```{r echo=TRUE, fig.align='center'}
+resis=table(dados$Resistencia)[c("r","mr","ms","s")]
+names(resis)=paste(c("resistentes","mod. resistentes",
+                     "mod. susceptível","susceptível"),round(100*resis/sum(resis),2),"%") 
+pie(resis,col=c("green4","blue","white","black"),density=c(100,100,80,20),border="black")
+```
+
+::: {style="text-align: justify;font-size: 0.8em;"}
+**Figura**: Resistência à ferrugem de híbridos de milho, para a região de Chapecó, 1987/88
+:::
+
+------------------------------------------------------------------------
+
+### Exercícios
+
+<br>
+
+::: {style="text-align: justify;"}
+1.  Construa uma tabela de distribuição de frequências para a variável "Tipo de grão" de um experimento de competição de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988 (ANDRADE; OGLIARI, 2010, p. 62) e ilustre dois gráficos indicados.
+:::
+
+------------------------------------------------------------------------
+
+### Distribuições de frequências de variáveis quantitativas discretas e representações gráficas
+
+<br>
+
+::: {style="text-align: justify;"}
+-   Tabelas de **distribuições de frequências** para variáveis quantitativas discretas são semelhantes a tabelas de distribuições de frequências para variáveis qualitativas.
+
+<br>
+
+-   Para esse tipo de variável os gráficos mais utilizados são: bastão, barras e de colunas.
+:::
+
+------------------------------------------------------------------------
+
+### Exercícios
+
+<br>
+
+::: {style="text-align: justify;"}
+2.  Construa a tabela de distribuição de frequências para a variável "Ciclo" de um experimento de competição de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988 (ANDRADE; OGLIARI, 2010, p. 62).
+:::
+
+------------------------------------------------------------------------
+
+#### Distribuições de frequências de variáveis quantitativas contínuas e representações gráficas
+
+::: {style="text-align: justify;font-size: 0.8em;"}
+-   Calcular a amplitude total dos dados: $$A_t=nº\ do\ maior - nº\ do\ menor = x_{max}-x_{min}.$$
+
+-   Não existindo um critério "rígido" para estabelecer o número de intervalos, sugere-se não utilizar menos de 5 e não mais de 15 intervalos. $$k=\sqrt(n),\ \ \ \mbox{ou}\ \ \ k=\sqrt(n)-1, \ \ \ \mbox{ou} \ \ \ k=1+3,3log(n).$$
+
+-   O intervalo das classes pode ser feito dividindo-se a amplitude total pelo número de classes: $$a_c=\frac{A_t}{k}.$$
+:::
+
+------------------------------------------------------------------------
+
+::: {style="text-align: justify;font-size: 0.7em;"}
+Tabela: Distribuição de frequências dos rendimentos médios, em kg/ha, de 32 híbridos de milho recomendados para o Oeste catarinense, 1987/88}
+
+| Rendimento médio(kg/ha) | Freq. abs.($n_i$) | Freq. acum. ($N_i$) | Freq. rel. ($f_i$) | Freq. rel. acu.($F_i$) | Porc. (%) | Porc. acum. |
+|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+| 3973 $\vdash$ 4457 | 1 | 1 | 0,031 | 0,031 | 3,1 | 3,1 |
+| 4457 $\vdash$ 4941 | 12 | 13 | 0,375 | 0,406 | 37,5 | 40,6 |
+| 4941 $\vdash$ 5425 | 13 | 26 | 0,406 | 0,812 | 40,6 | 81,2 |
+| 5425 $\vdash$ 5909 | 3 | 29 | 0,094 | 0,906 | 9,4 | 90,6 |
+| 5909 $\vdash$ 6393 | 3 | 32 | 0,094 | 1,000 | 9,4 | 100,0 |
+| TOTAL | 32 | $-$ | 1 | $-$ | 100 | $-$ |
+:::
+
+```{r echo=t, results='hide'}
+require(fdth)
+tab=fdt(dados$Rendimento,start = 3973,end = 6393,h = 484)
+tab
+```
+
+------------------------------------------------------------------------
+
+### Gráficos para variáveis contínuas
+
+<br>
+
+::: {style="text-align: justify;font-size: 0.9em;"}
+A representação gráfica de dados relativos a uma variável contínua, apresentado em uma tabela com classes de frequências, pode ser feita através de:
+
+<br>
+
+-   Histograma
+
+<br>
+
+-   Polígono de frequências
+:::
+
+## Histograma
+
+```{r echo=T, fig.align="center"}
+s=seq(min(dados$Rendimento),6393,484)
+hist(dados$Rendimento,breaks=s,xaxt="n",ylim=c(0,14),border="black",xlab="Rendimento médio (kg/ha)",density=30, las=1,ylab="Densidade de frequências",col="green4",main="")
+axis(1,s,line=-.6)
+abline(h=0,cex=4)
+```
+
+## Polígono de frequências
+
+```{r echo=TRUE, fig.align='center'}
+tab=hist(dados$Rendimento,breaks=s,plot=F)
+pontosmedios=c(3731,tab$mids,6635)
+fr=c(0,tab$counts,0)
+plot(pontosmedios,fr,type="l",lwd=2,ylim=c(0,14),xlab="Rendimento médio (kg/ha)",ylab="Densidade de frequência",las=1,bty="l",xaxt="n",axes=F)
+axis(1,pontosmedios,line=-.6)
+axis(2,tab$couts,las=1)
+abline(h=0)
+```
+
+## Exercícios 
+
+::: {style="text-align: justify;font-size: 0.9em;"}
+3.  Construa a tabela de distribuição de frequências para a variável "Altura de plantas" de um experimento de competição de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988 (ANDRADE; OGLIARI, 2010, p. 62) e faça os gráficos indicados. Utilizar 6 classes.
+:::
