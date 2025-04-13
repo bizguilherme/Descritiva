@@ -141,10 +141,10 @@ alt
 ------------------------------------------------------------------------
 
 ::: {style="text-align: justify;font-size: 0.8em;"}
-Tabela: Distribuição de Frequências da resistência à ferrugem de 32 híbridos de milho recomendados para a região de Chapecó, safra- 1987/88.
+**Tabela**: Distribuição de Frequências da resistência à ferrugem de 32 híbridos de milho recomendados para a região de Chapecó, safra- 1987/88.
 
 | Resitência à ferrugem | Frequência absoluta$(n_i)$ | Frequência relativa $(f_i)$ | Porcentagem (%) | Porcentagem acumulada |
-|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+|:--:|:--:|:--:|:--:|:--:|
 | r | 10 | 0,3125 | 31,25 | 31,25 |
 | mr | 6 | 0,1875 | 18,75 | 50,00 |
 | ms | 9 | 0,2813 | 28,13 | 78,13 |
@@ -247,10 +247,10 @@ pie(resis,col=c("green4","blue","white","black"),density=c(100,100,80,20),border
 ------------------------------------------------------------------------
 
 ::: {style="text-align: justify;font-size: 0.7em;"}
-Tabela: Distribuição de frequências dos rendimentos médios, em kg/ha, de 32 híbridos de milho recomendados para o Oeste catarinense, 1987/88}
+**Tabela**: Distribuição de frequências dos rendimentos médios, em kg/ha, de 32 híbridos de milho recomendados para o Oeste catarinense, 1987/88}
 
 | Rendimento médio(kg/ha) | Freq. abs.($n_i$) | Freq. acum. ($N_i$) | Freq. rel. ($f_i$) | Freq. rel. acu.($F_i$) | Porc. (%) | Porc. acum. |
-|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 | 3973 $\vdash$ 4457 | 1 | 1 | 0,031 | 0,031 | 3,1 | 3,1 |
 | 4457 $\vdash$ 4941 | 12 | 13 | 0,375 | 0,406 | 37,5 | 40,6 |
 | 4941 $\vdash$ 5425 | 13 | 26 | 0,406 | 0,812 | 40,6 | 81,2 |
@@ -304,8 +304,370 @@ axis(2,tab$couts,las=1)
 abline(h=0)
 ```
 
-## Exercícios 
+## Exercícios
 
 ::: {style="text-align: justify;font-size: 0.9em;"}
 3.  Construa a tabela de distribuição de frequências para a variável "Altura de plantas" de um experimento de competição de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988 (ANDRADE; OGLIARI, 2010, p. 62) e faça os gráficos indicados. Utilizar 6 classes.
 :::
+
+------------------------------------------------------------------------
+
+### Resolução exercício 3.
+
+<br>
+
+::: {style="text-align: justify;font-size: 0.6em;"}
+**Tabela**: Distribuição de frequências das Altura de plantas de 32 híbridos de milho recomendados para o Oeste catarinense, 1987/88
+
+| Altura de Plantas | $n_i$ | $N_i$ |  $f_i$  |  $F_i$  |   \%   | Porc. acum. | $\bar{x}_i$ |
+|:-----------------:|:-----:|:-----:|:-------:|:-------:|:------:|:-----------:|:-----------:|
+| 235 $\vdash$ 243  |   7   |   7   | 0,21875 | 0,21875 | 21,875 |   21,875    |     239     |
+| 243 $\vdash$ 251  |   7   |  14   | 0,21875 | 0,43750 | 21,875 |   43,750    |     247     |
+| 251 $\vdash$ 259  |   6   |  20   | 0,18750 | 0,62500 | 18,750 |   62,500    |     255     |
+| 259 $\vdash$ 267  |   7   |  27   | 0,21875 | 0,84375 | 21,875 |   84,375    |     263     |
+| 267 $\vdash$ 275  |   3   |  30   | 0,09375 | 0,93750 | 9,375  |   93,750    |     271     |
+| 275 $\vdash$ 283  |   2   |  32   | 0,06250 | 1,00000 | 6,250  |   100,000   |     279     |
+|       Total       |  32   |  $-$  |    1    |   $-$   |  100   |     $-$     |     $-$     |
+:::
+
+```{r echo=T, results='hide'}
+tab=fdt(dados$Altura_planta,start=235,end=283,h = 8)
+```
+
+## Histograma - Exercício 3
+
+```{r echo=T, fig.align="center"}
+plot(tab,col="green4",density=50,border="black",xlab = "Altura de Plantas",ylab="Freq. Abs.",las=1)
+
+```
+
+------------------------------------------------------------------------
+
+### Medidas Descritivas
+
+::: {style="text-align: justify;font-size: 0.7em;"}
+-   Uma outra maneira de resumir os dados de uma variável quantitativa, além de tabelas e gráficos, são apresenta-los na forma de valores numéricos, denominados medidas descritivas.
+
+    <br>
+
+-   As medidas descritivas auxiliam a análise do comportamento dos dados. Tais dados são provenientes de uma população ou amostra.
+
+    +-----------------+------------+------------------+
+    | Medidas         | Parâmetros | -   Estatísticas |
+    +:===============:+:==========:+:================:+
+    | Nº de elementos | N          | n                |
+    +-----------------+------------+------------------+
+    | Média           | $\mu$      | $\bar{x}$        |
+    +-----------------+------------+------------------+
+    | Variância       | $\sigma^2$ | $s^2$            |
+    +-----------------+------------+------------------+
+    | Desvio Padrão   | $\sigma$   | $s$              |
+    +-----------------+------------+------------------+
+:::
+
+------------------------------------------------------------------------
+
+### Medidas de Posição
+
+<br>
+
+::: {style="text-align: justify; font-size: .8em;"}
+-   As medidas de tendência central são assim denominadas por indicarem um ponto em torno do qual se concentram os dados.
+
+    <br>
+
+-   Este ponto tende a ser o centro da distribuição dos dados.
+
+    <br>
+
+-   As principais medidas de tendência central são: média, mediana e moda.
+:::
+
+## Média Aritmética
+
+<br>
+
+::: {style="text-align: justify; font-size: .8em;"}
+-   A média aritmética ($\bar{x}$) é a soma de todos os valores observados da variável dividida pelo número total de observações.
+
+    <br>
+
+-   Sob uma visão geométrica a média de uma distribuição é o centro de gravidade, representa o ponto de equilíbrio de um conjunto de dados.
+:::
+
+------------------------------------------------------------------------
+
+### Média Aritmética
+
+::: {style="text-align: justify; font-size:0.8em;"}
+-   Seja ($x_1,x_2,...,x_n$) um conjunto de dados. A média é dada por:$$\mu=\frac{\sum_{i=1}^Nx_i}{N}\ \ \ \mbox{ou}\ \ \ \bar{x}=\frac{\sum_{i=1}^nx_i}{n}.$$
+
+-   Caso os dados estejam apresentados segundo uma distribuição de frequências, tem-se: $$\mu=\frac{\sum_{i=1}^k\bar{x}_in_i}{N}\ \ \ \mbox{ou}\ \ \ \bar{x}=\frac{\sum_{i=1}^k\bar{x}_in_i}{n}.$$Observe que no caso de dados agrupados a média é obtida a partir de uma ponderação, em que os pesos são as frequências absolutas de cada classe e $\bar{x}_i$ é o ponto médio da classe $i$.
+:::
+
+------------------------------------------------------------------------
+
+### Observações
+
+<br>
+
+::: {style="text-align: justify;font-size: 0.8em;"}
+1.  A média é única em um conjunto de dados e nem sempre é igual a um determinado valor observado.
+
+2.  A média é afetada por valores extremos observados.
+
+3.  Quando se observam no conjunto dados discrepantes, faz-se da média uma medida não apropriada para representar os dados.
+
+4.  A soma da diferença de cada valor observado em relação à média é zero, ou seja, a soma dos desvios é zero. $$ \sum_{i=1}^n(x_i-\bar{x})=0$$
+:::
+
+## Exemplo 1
+
+Calcule a média de Resistência de uvas Niágara.
+
+<br>
+
+```{r echo=FALSE}
+library(huxtable)
+resis=scan(dec=",", text= "
+0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
+
+resis=matrix(sort(resis),4,9,byrow=T)
+
+knitr::kable(resis,caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",format.args = list(decimal.mark = ','))
+```
+
+```{r echo=T, fig.align="center",results='hide'}
+resis=scan(dec=",", text= "
+0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
+mean(resis)
+```
+
+------------------------------------------------------------------------
+
+### Exemplo 2 - Dados agrupados em classes
+
+::: {style="text-align: justify;font-size: 0.7em;"}
+Utilizando a tabela abaixo, calcule a média de resistência de uvas Niágaras.
+
+<br>
+
+**Tabela**: Distribuição de frequências das resistências de uvas niágaras
+
+| Resistência | Freq. ($n_i$) | Freq. ($f_i$) | Freq. ($N_i$) | Ponto ($\bar{x}_i$) | $n_i\bar{x}_i$ |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+| 0,50 $\vdash$ 0,72 | 12 | 0,33 | 12 | 0,61 | 7,32 |
+| 0,72 $\vdash$ 0,94 | 17 | 0,47 | 29 | 0,83 | 14,11 |
+| 0,94 $\vdash$ 1,16 | 6 | 0,17 | 35 | 1,05 | 6,3 |
+| 1,16 $\vdash$ 1,38 | 0 | 0,0 | 35 | 1,27 | 0,0 |
+| 1,38 $\vdash$ 1,60 | 0 | 0,0 | 35 | 1,49 | 0,0 |
+| 1,60 $\vdash$ 1,82 | 1 | 0,03 | 36 | 1,71 | 1,71 |
+| Total | 36 | 1,0 | $-$ | $-$ | 29,44 |
+
+```{r echo=T,results='hide'}
+tabres=fdth::fdt(resis,start = .5,h=.22,end=1.82)
+tabres
+mean(tabres)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Exercício
+
+::: {style="text-align: justify;font-size: 0.7em;"}
+4.  Calcule a média da variável "rendimento médio" de híbridos de milho com os dados brutos e com os dados agrupados em classes.
+
+**Tabela**: Distribuição de frequências dos rendimentos médios, em kg/ha, de 32 híbridos de milho recomendados para o Oeste catarinense, 1987/88.
+
+| Rendimento médio (kg/ha) | Freq. abs. ($n_i$) | Freq. rel.($f_i$) | Ponto médio ($\bar{x}_i$) |
+|:--:|:--:|:--:|:--:|
+| 3973 $\vdash$ 4457 | 1 | 0.031 |  |
+| 4457 $\vdash$ 4941 | 12 | 0.375 |  |
+| 4941 $\vdash$ 5425 | 13 | 0.406 |  |
+| 5425 $\vdash$ 5909 | 3 | 0.094 |  |
+| 5909 $\vdash$ 6393 | 3 | 0.094 |  |
+| TOTAL | 32 | 1 | $-$ |
+:::
+
+------------------------------------------------------------------------
+
+### Moda
+
+<br>
+
+::: {style="text-align: justify;font-size: 0.9em;"}
+-   A moda ($M_o$) é o valor que apresenta a maior frequência da variável entre os valores observados.
+
+<br>
+
+-   Para o caso de valores individuais, a moda pode ser determinada observando-se a frequência absoluta dos dados.
+:::
+
+------------------------------------------------------------------------
+
+### Moda - Dados agrupados em classes
+
+::: {style="font-align: justify; font-size: 0.7em;"}
+-   Tratando-se de uma distribuição de frequências de valores agrupados em classes, a moda é calculada utilizando: $$M_o=l_i+\frac{\Delta_1}{\Delta_1+\Delta_2}a_c$$ em que $\Delta_1$ é a diferença entre a frequência abs. da classe modal e a frequência abs. da classe anterior, $\Delta_2$ é a diferença entre a frequência abs. da classe modal e a frequência abs. da classe posterior, $l_i$ é o limite inferior da classe modal e $a_c$ é a amplitude da classe.
+
+<br>
+
+-   **OBS:** A moda é mais indicada quando se deseja obter, rapidamente, uma medida de tendência central, e seu valor não é afetado por valores extremos.
+:::
+
+------------------------------------------------------------------------
+
+### Exemplo 3
+
+::: {style="font-align: justify; font-size: 0.7em;"}
+Utilizando a tabela, em que está apresentada a distribuição de frequências da resistência de uvas, calcule a moda.
+
+**Tabela:** Distribuição de frequências da resistência de uvas niágara
+
+|  |  |  |  |  |
+|:--:|:--:|:--:|:--:|:--:|
+| Resistência (N) | Freq. ($n_i$) | Freq. ($f_i$) | Freq. $N_i$ | Ponto médio $(\bar{x}_i)$ |
+| 0,50 $\vdash$ 0,72 | 12 | 0,33 | 12 | 0,61 |
+| 0,72 $\vdash$ 0,94 | 17 | 0,47 | 29 | 0,83 |
+| 0,94 $\vdash$ 1,16 | 6 | 0,17 | 35 | 1,05 |
+| 1,16 $\vdash$ 1,38 | 0 | 0,0 | 35 | 1,27 |
+| 1,38 $\vdash$ 1,60 | 0 | 0,0 | 35 | 1,49 |
+| 1,60 $\vdash$ 1,82 | 1 | 0,03 | 36 | 1,71 |
+| Total | 36 | 1,0 |  |  |
+
+```{r echo=T,results='hide'}
+fdth::mfv(tabres)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Exercício
+
+::: {style="font-align: justify; font-size: 0.7em;"}
+5.  Calcule a moda da variável "rendimento médio" de um experimento de competição de 32 híbridos de milho com os dados agrupados em classes.
+
+**Tabela**: Distribuição de frequências dos rendimentos médios, em kg/ha, de 32 híbridos de milho recomendados para o Oeste catarinense, 1987/88.
+
+| Rendimento médio (kg/ha) | Freq. abs. ($n_i$) | Freq. rel.($f_i$) | Ponto médio ($\bar{x}_i$) |
+|:--:|:--:|:--:|:--:|
+| 3973 $\vdash$ 4457 | 1 | 0.031 |  |
+| 4457 $\vdash$ 4941 | 12 | 0.375 |  |
+| 4941 $\vdash$ 5425 | 13 | 0.406 |  |
+| 5425 $\vdash$ 5909 | 3 | 0.094 |  |
+| 5909 $\vdash$ 6393 | 3 | 0.094 |  |
+| TOTAL | 32 | 1 | $-$ |
+:::
+
+------------------------------------------------------------------------
+
+## Exercício
+
+<br>
+
+::: {style="font-align: justify; font-size: 0.8em;"}
+6.  Calcule a moda da variável "Tipo de grão" do experimento de competição de híbridos de milho para a região de Chapecó, SC.
+:::
+
+------------------------------------------------------------------------
+
+### Mediana
+
+::: {style="font-align: justify; font-size: 0.7em;"}
+-   A mediana ($M_d$) é o valor que ocupa a posição central da série de observações de uma variável, em rol, dividindo o conjunto em duas partes iguais.
+
+-   Para calcular a mediana é necessário localizar a posição da mediana. $$L=\frac{n}{2}$$
+
+    -   Se L for decimal, arredonda o seu valor para o maior inteiro mais próximo, e então: $$M_d=x_{L^+}$$
+
+    -   Se L for inteiro, deve-se somar o valor correspondente a L ao valor correspondente a L+1 e dividir por 2 $$M_d=\frac{x_L+x_{L+1}}{2}$$
+:::
+
+------------------------------------------------------------------------
+
+### Exemplo 4
+
+::: {style="font-align: justify; font-size: 0.8em;"}
+<br>
+
+-   Calcule a mediana de Resistência de uvas Niágara.
+
+<br>
+
+```{r echo=FALSE}
+library(huxtable)
+resis=scan(dec=",", text= "
+0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
+
+resis=matrix(sort(resis),4,9,byrow=T)
+
+knitr::kable(resis,caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",format.args = list(decimal.mark = ','))
+```
+
+```{r echo=T,results='hide'}
+median(resis)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Mediana - Dados agrupados em classes
+
+<br>
+
+::: {style="font-align: justify; font-size: 0.9em;"}
+-   Quando os dados estão agrupados em classes, a mediana é calculada utilizando: $$M_d=l_i+\frac{L-F_{an}}{n_{md}}a_c$$ em que $F_{an}$ é a frequência acumulada da classe anterior a classe da mediana e $n_{md}$ é a frequência absoluta da classe da mediana.
+:::
+
+------------------------------------------------------------------------
+
+### Exemplo 5
+
+::: {style="font-align: justify; font-size: 0.7em;"}
+-   Utilizando a tabela, em que está apresentada a distribuição de frequências da resistência de uvas, calcule a mediana.
+
+**Tabela:** Distribuição de frequências da resistência de uvas niágara
+
+|  |  |  |  |  |
+|:--:|:--:|:--:|:--:|:--:|
+| Resistência (N) | Freq. ($n_i$) | Freq. ($f_i$) | Freq. $N_i$ | Ponto médio $(\bar{x}_i)$ |
+| 0,50 $\vdash$ 0,72 | 12 | 0,33 | 12 | 0,61 |
+| 0,72 $\vdash$ 0,94 | 17 | 0,47 | 29 | 0,83 |
+| 0,94 $\vdash$ 1,16 | 6 | 0,17 | 35 | 1,05 |
+| 1,16 $\vdash$ 1,38 | 0 | 0,0 | 35 | 1,27 |
+| 1,38 $\vdash$ 1,60 | 0 | 0,0 | 35 | 1,49 |
+| 1,60 $\vdash$ 1,82 | 1 | 0,03 | 36 | 1,71 |
+| Total | 36 | 1,0 |  |  |
+
+```{r echo=T,results='hide'}
+median(tabres)
+```
+:::
+
+------------------------------------------------------------------------
+
+### Exercício
+
+<div>
+
+</div>
+
+::: {style="font-align: justify; font-size: 0.7em;"}
+7.  Calcule a mediana da variável "rendimento médio" de um experimento de competição de 32 híbridos de milho com os dados agrupados em classes.
+
+**Tabela**: Distribuição de frequências dos rendimentos médios, em kg/ha, de 32 híbridos de milho recomendados para o Oeste catarinense, 1987/88.
+
+| Rendimento médio (kg/ha) | Freq. abs. ($n_i$) | Freq. rel.($f_i$) | Ponto médio ($\bar{x}_i$) |
+|:--:|:--:|:--:|:--:|
+| 3973 $\vdash$ 4457 | 1 | 0.031 |  |
+| 4457 $\vdash$ 4941 | 12 | 0.375 |  |
+| 4941 $\vdash$ 5425 | 13 | 0.406 |  |
+| 5425 $\vdash$ 5909 | 3 | 0.094 |  |
+| 5909 $\vdash$ 6393 | 3 | 0.094 |  |
+| TOTAL | 32 | 1 | $-$ |
+:::
+
+------------------------------------------------------------------------
+
+## Medidas de Dispersão
