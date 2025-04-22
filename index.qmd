@@ -371,17 +371,17 @@ plot(tab,col="green4",density=50,border="black",xlab = "Altura de Plantas",ylab=
 
 -   As medidas descritivas auxiliam a análise do comportamento dos dados. Tais dados são provenientes de uma população ou amostra.
 
-    +-----------------+----------------+------------------+
-    | Medidas         | Parâmetros     | -   Estatísticas |
-    +:===============:+:==============:+:================:+
-    | Nº de elementos | N              | n                |
-    +-----------------+----------------+------------------+
-    | Média           | $\mu$          | $\bar{x}$        |
-    +-----------------+----------------+------------------+
-    | Variância       | $\sigma^2$     | $s^2$            |
-    +-----------------+----------------+------------------+
-    | Desvio Padrão   | $\sigma$       | $s$              |
-    +-----------------+----------------+------------------+
+    +-----------------+------------+------------------+
+    | Medidas         | Parâmetros | -   Estatísticas |
+    +:===============:+:==========:+:================:+
+    | Nº de elementos | N          | n                |
+    +-----------------+------------+------------------+
+    | Média           | $\mu$      | $\bar{x}$        |
+    +-----------------+------------+------------------+
+    | Variância       | $\sigma^2$ | $s^2$            |
+    +-----------------+------------+------------------+
+    | Desvio Padrão   | $\sigma$   | $s$              |
+    +-----------------+------------+------------------+
 :::
 
 ------------------------------------------------------------------------
@@ -1224,5 +1224,3 @@ boxplot(resis)
 
 -   **Assimétrica à esquerda ou negativa:** Quando a cauda da curva da distribuição declina para esquerda. $$\bar{x} < Md<Mo$$
 :::
-
-
