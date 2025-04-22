@@ -333,7 +333,7 @@ abline(h=0)
 $$
 \begin{array}{lccccccc}
 \hline
-\textbf{Altura das} & \mathbf{n_i} & \mathbf{N_i} & \mathbf{f_i} & \mathbf{F_i} & \textbf{%} & \textbf{Porc.} & \bar{x}_i \\
+\textbf{Altura das} & \mathbf{n_i} & \mathbf{N_i} & \mathbf{f_i} & \mathbf{F_i} & \% & \textbf{Porc.} & \bar{x}_i \\
 ~~\textbf{plantas} &  &  &  &  &  & \textbf{acumulada} &  \\
 \hline
 235 \vdash 243 & 7 & 7 & 0{,}21875 & 0{,}21875 & 21{,}875 & 21{,}875 & 239 \\
