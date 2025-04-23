@@ -442,18 +442,40 @@ plot(tab,col="green4",density=50,border="black",xlab = "Altura de Plantas",ylab=
 
 ## Exemplo 1
 
+::: {style="text-align: justify; font-size: .8em;"}
 Calcule a média de Resistência de uvas Niágara.
 
 <br>
 
 ```{r echo=FALSE}
-library(huxtable)
-resis=scan(dec=",", text= "
+library(knitr)
+library(kableExtra)
+
+# Vetor de dados
+resis = scan(dec = ",", text = "
 0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
 
-resis=matrix(sort(resis),4,9,byrow=T)
+# Organizando os dados em uma matriz
+resis = matrix(sort(resis), 4, 9, byrow = TRUE)
 
-knitr::kable(resis,caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",format.args = list(decimal.mark = ','))
+# Transformar a matriz em data frame e criar cabeçalho falso
+resis_df <- as.data.frame(resis)
+colnames(resis_df) <- rep("", ncol(resis_df))  # sem nomes nas colunas
+
+
+
+kable(resis_df, format = "html",
+      caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",
+      format.args = list(decimal.mark = ','), escape = FALSE) %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = NULL) %>%
+  column_spec(1:ncol(resis_df), border_left = FALSE, border_right = FALSE) %>%
+  # Linha preta no topo
+  row_spec(0, extra_css = "border-top: 1px solid white; border-bottom: 2px solid black;") %>%
+  # Linhas internas brancas
+  row_spec(1:(nrow(resis_df) - 1), extra_css = "border-bottom: 1px solid white;") %>%
+  # Linha preta no final
+  row_spec(nrow(resis_df), extra_css = "border-bottom: 2px solid black;")
+
 ```
 
 ```{r echo=T, fig.align="center",results='hide'}
@@ -461,6 +483,7 @@ resis=scan(dec=",", text= "
 0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
 mean(resis)
 ```
+:::
 
 ------------------------------------------------------------------------
 
@@ -641,16 +664,35 @@ $$
 
 -   Calcule a mediana de Resistência de uvas Niágara.
 
-<br>
-
 ```{r echo=FALSE}
-library(huxtable)
-resis=scan(dec=",", text= "
+library(knitr)
+library(kableExtra)
+
+# Vetor de dados
+resis = scan(dec = ",", text = "
 0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
 
-resis=matrix(sort(resis),4,9,byrow=T)
+# Organizando os dados em uma matriz
+resis = matrix(sort(resis), 4, 9, byrow = TRUE)
 
-knitr::kable(resis,caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",format.args = list(decimal.mark = ','))
+# Transformar a matriz em data frame e criar cabeçalho falso
+resis_df <- as.data.frame(resis)
+colnames(resis_df) <- rep("", ncol(resis_df))  # sem nomes nas colunas
+
+
+
+kable(resis_df, format = "html",
+      caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",
+      format.args = list(decimal.mark = ','), escape = FALSE) %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = NULL) %>%
+  column_spec(1:ncol(resis_df), border_left = FALSE, border_right = FALSE) %>%
+  # Linha preta no topo
+  row_spec(0, extra_css = "border-top: 1px solid white; border-bottom: 2px solid black;") %>%
+  # Linhas internas brancas
+  row_spec(1:(nrow(resis_df) - 1), extra_css = "border-bottom: 1px solid white;") %>%
+  # Linha preta no final
+  row_spec(nrow(resis_df), extra_css = "border-bottom: 2px solid black;")
+
 ```
 
 ```{r echo=T,results='hide'}
@@ -765,7 +807,11 @@ $$
 ### Amplitude
 
 ::: {style="font-align: justify; font-size: 0.8em;"}
-<br> - É a diferença entre o maior e o menor valor observado $$A_t=x_{max}-x_{min}$$
+<br>
+
+-    É a diferença entre o maior e o menor valor observado $$A_t=x_{max}-x_{min}$$
+
+<!-- -->
 
 -   Esta medida de dispersão não leva em consideração os valores intermediários perdendo a informação de como os dados estão distribuídos e/ou concentrados.
 
@@ -854,22 +900,36 @@ $$
 
 ### Exemplo 6
 
-::: {style="font-align: justify; font-size: 0.7em;"}
+::: {style="font-align: justify; font-size: 0.6em;"}
 Calcule as medidas de dispersão para as séries A, B e C.
 
-| Repetição | Série A | Série B | Série C |
-|-----------|:-------:|:-------:|:-------:|
-| 1         |   45    |   41    |   25    |
-| 2         |   45    |   42    |   30    |
-| 3         |   45    |   43    |   35    |
-| 4         |   45    |   44    |   40    |
-| 5         |   45    |   45    |   45    |
-| 6         |   45    |   46    |   50    |
-| 7         |   45    |   47    |   55    |
-| 8         |   45    |   48    |   60    |
-| 9         |   45    |   49    |   65    |
-| Média     |   45    |   45    |   45    |
-| Mediana   |   45    |   45    |   45    |
+```{r echo=F}
+
+library(knitr)
+library(kableExtra)
+
+df <- data.frame(
+  Repetição = 1:9,
+  `Série A` = rep(45, 9),
+  `Série B` = 41:49,
+  `Série C` = seq(25, 65, 5)
+)
+
+# Adiciona linhas com média e mediana
+df <- rbind(df, 
+            "Média" = colMeans(df),
+            "Mediana" = apply(df, 2, median))
+df[10:11,1]=c("Média","Mediana")
+
+# Gera tabela com linha preta em cima e embaixo
+kable(df, format = "html", align = "c") %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = NULL) %>%
+  column_spec(1:ncol(df), border_left = FALSE, border_right = FALSE) %>%
+  row_spec(0, extra_css = "border-top: 2px solid black;border-bottom: 2px solid black") %>%
+  row_spec(9:nrow(df), extra_css = "border-bottom: 2px solid black;")%>%
+# Linhas internas brancas
+row_spec(1:(nrow(df) - 3), extra_css = "border-bottom: 1px solid white;")
+```
 :::
 
 ------------------------------------------------------------------------
@@ -881,13 +941,34 @@ Calcule as medidas de dispersão para as séries A, B e C.
 
 -   Calcule todas as medidas de dispersão das resistências, em N, de uvas Niágaras, fornecidas por produtores na safrinha de 2002.
 
-<br>
-
 ```{r echo=FALSE}
-resis=scan(dec=",", text= "
+library(knitr)
+library(kableExtra)
+
+# Vetor de dados
+resis = scan(dec = ",", text = "
 0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
 
-knitr::kable(matrix(sort(resis),4,9,byrow=T),caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",format.args = list(decimal.mark= ','))
+# Organizando os dados em uma matriz
+resis = matrix(sort(resis), 4, 9, byrow = TRUE)
+
+# Transformar a matriz em data frame e criar cabeçalho falso
+resis_df <- as.data.frame(resis)
+colnames(resis_df) <- rep("", ncol(resis_df))  # sem nomes nas colunas
+
+
+
+kable(resis_df, format = "html",
+      caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",
+      format.args = list(decimal.mark = ','), escape = FALSE) %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = NULL) %>%
+  column_spec(1:ncol(resis_df), border_left = FALSE, border_right = FALSE) %>%
+  # Linha preta no topo
+  row_spec(0, extra_css = "border-top: 1px solid white; border-bottom: 2px solid black;") %>%
+  # Linhas internas brancas
+  row_spec(1:(nrow(resis_df) - 1), extra_css = "border-bottom: 1px solid white;") %>%
+  # Linha preta no final
+  row_spec(nrow(resis_df), extra_css = "border-bottom: 2px solid black;")
 ```
 
 ```{r echo=T,results='hide'}
@@ -937,9 +1018,10 @@ $$
 \hline
 \end{array}
 $$
-:::
 
 ```{r echo=T,results='hide'}
+resis = scan(dec = ",", text = "
+0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
 tabres=fdth::fdt(resis,start = .5,h=.22,end=1.82)
 #### Variância
 var(tabres)
@@ -950,6 +1032,7 @@ sd(tabres)
 #### Coeficiente de variação
 100*sd(tabres)/mean(tabres)
 ```
+:::
 
 ------------------------------------------------------------------------
 
@@ -1051,13 +1134,34 @@ $$
 
 -   Calcule os quartis das resistências, em N, de uvas Niágaras, fornecidas por produtores na safrinha de 2002.
 
-<br>
-
 ```{r echo=FALSE}
-resis=scan(dec=",", text= "
+library(knitr)
+library(kableExtra)
+
+# Vetor de dados
+resis = scan(dec = ",", text = "
 0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
 
-knitr::kable(matrix(sort(resis),4,9,byrow=T),caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",format.args = list(decimal.mark= ','))
+# Organizando os dados em uma matriz
+resis = matrix(sort(resis), 4, 9, byrow = TRUE)
+
+# Transformar a matriz em data frame e criar cabeçalho falso
+resis_df <- as.data.frame(resis)
+colnames(resis_df) <- rep("", ncol(resis_df))  # sem nomes nas colunas
+
+
+
+kable(resis_df, format = "html",
+      caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",
+      format.args = list(decimal.mark = ','), escape = FALSE) %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = NULL) %>%
+  column_spec(1:ncol(resis_df), border_left = FALSE, border_right = FALSE) %>%
+  # Linha preta no topo
+  row_spec(0, extra_css = "border-top: 1px solid white; border-bottom: 2px solid black;") %>%
+  # Linhas internas brancas
+  row_spec(1:(nrow(resis_df) - 1), extra_css = "border-bottom: 1px solid white;") %>%
+  # Linha preta no final
+  row_spec(nrow(resis_df), extra_css = "border-bottom: 2px solid black;")
 ```
 :::
 
@@ -1178,10 +1282,29 @@ arrows(1.4,c(0,3.5,5,6.5,10,12),1.27,c(0,3.5,5,6.5,10,12),length = .07,lwd=1.5)
 ::: {style="font-align: justify; font-size: 0.8em;"}
 -   O objetivo da administração é lucrar o máximo possível com o capital investido em sua empresa. Uma medida de bom desempenho é o retorno sobre os investimentos. A seguir são apresentados os mais recentes retornos
 
-|      |      |      |      |      |      |
-|------|------|------|------|------|------|
-| 2210 | 2255 | 2350 | 2380 | 2380 | 2390 |
-| 2420 | 2440 | 2450 | 2550 | 2630 | 2825 |
+```{r echo=F}
+library(knitr)
+library(kableExtra)
+
+# Criando os dados como matriz
+dados <- matrix(c(
+  2210, 2255, 2350, 2380, 2380, 2390,
+  2420, 2440, 2450, 2550, 2630, 2825
+), nrow = 2, byrow = TRUE)
+
+# Convertendo para data frame e sem nomes de colunas
+df <- as.data.frame(dados)
+colnames(df) <- rep("", ncol(df))
+
+# Gerando a tabela com estilo personalizado
+kable(df, format = "html", align = "c") %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = NULL) %>%
+  column_spec(1:ncol(df), border_left = FALSE, border_right = FALSE) %>%
+  row_spec(0, extra_css = "border-top: 1px solid white; border-bottom: 2px solid black;") %>%
+  row_spec(1, extra_css = "border-bottom: 1px solid white;") %>%
+  row_spec(2, extra_css = "border-bottom: 2px solid black;")
+
+```
 
 ```{r echo=T, results="hide",fig.show='hide'}
 resp=c(2210 , 2255 , 2350 , 2380 , 2380 , 2390,
@@ -1199,19 +1322,40 @@ boxplot(resp)
 
 -   Faça o Box-plot, em N, de uvas Niágaras, fornecidas por produtores na safrinha de 2002.
 
-<br>
-
 ```{r echo=FALSE}
-resis=scan(dec=",", text= "
+library(knitr)
+library(kableExtra)
+
+# Vetor de dados
+resis = scan(dec = ",", text = "
 0,92 1,80 1,00 0,94 0,76 0,72 0,50 1,10 0,99 0,70 0,73 0,89 0,64 0,76 0,84 0,63 0,75 0,83 0,82 0,59 0,58 0,54 0,87 0,80 0,82 0,64 0,76 1,04 0,73 1,04 0,67 0,76 0,75 0,61 0,69 0,52")
 
-knitr::kable(matrix(sort(resis),4,9,byrow=T),caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",format.args = list(decimal.mark= ','))
+# Organizando os dados em uma matriz
+resis = matrix(sort(resis), 4, 9, byrow = TRUE)
+
+# Transformar a matriz em data frame e criar cabeçalho falso
+resis_df <- as.data.frame(resis)
+colnames(resis_df) <- rep("", ncol(resis_df))  # sem nomes nas colunas
+
+
+
+kable(resis_df, format = "html",
+      caption = "Tabela: Rol de resistência, em N, de uvas Niágara, fornecida por produtores em 2002",
+      format.args = list(decimal.mark = ','), escape = FALSE) %>%
+  kable_styling(full_width = FALSE, position = "center", bootstrap_options = NULL) %>%
+  column_spec(1:ncol(resis_df), border_left = FALSE, border_right = FALSE) %>%
+  # Linha preta no topo
+  row_spec(0, extra_css = "border-top: 1px solid white; border-bottom: 2px solid black;") %>%
+  # Linhas internas brancas
+  row_spec(1:(nrow(resis_df) - 1), extra_css = "border-bottom: 1px solid white;") %>%
+  # Linha preta no final
+  row_spec(nrow(resis_df), extra_css = "border-bottom: 2px solid black;")
 ```
-:::
 
 ```{r echo=T, results="hide"}
 boxplot(resis)
 ```
+:::
 
 ------------------------------------------------------------------------
 
