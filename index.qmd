@@ -51,7 +51,7 @@ code-fold: true
 
 ## Conjunto de dados
 
-<embed src="https://www.uel.br/pessoal/biz/pages/arquivos/Agronomia/dados/dados_milho.pdf" width="100%" height="600px">
+<embed src="https://pessoal.uel.br/biz/wp-content/uploads/2025/06/dados_milho.pdf" width="100%" height="600px">
 
 ## Importando os dados no software R
 
@@ -59,7 +59,7 @@ code-fold: true
 
 ```{r echo=TRUE, results='markup'}
 #| paged-print: false
-dados=read.table("https://www.uel.br/pessoal/biz/pages/arquivos/Agronomia/dados/dados_milho.txt",head=T)
+dados=read.table("https://pessoal.uel.br/biz/wp-content/uploads/2025/06/dados_milho.txt",head=T)
 head(dados)
 ```
 
@@ -371,17 +371,17 @@ plot(tab,col="green4",density=50,border="black",xlab = "Altura de Plantas",ylab=
 
 -   As medidas descritivas auxiliam a análise do comportamento dos dados. Tais dados são provenientes de uma população ou amostra.
 
-    +-----------------+----------------+------------------+
-    | Medidas         | Parâmetros     | -   Estatísticas |
-    +:===============:+:==============:+:================:+
-    | Nº de elementos | N              | n                |
-    +-----------------+----------------+------------------+
-    | Média           | $\mu$          | $\bar{x}$        |
-    +-----------------+----------------+------------------+
-    | Variância       | $\sigma^2$     | $s^2$            |
-    +-----------------+----------------+------------------+
-    | Desvio Padrão   | $\sigma$       | $s$              |
-    +-----------------+----------------+------------------+
+    +-----------------+------------+------------------+
+    | Medidas         | Parâmetros | -   Estatísticas |
+    +:===============:+:==========:+:================:+
+    | Nº de elementos | N          | n                |
+    +-----------------+------------+------------------+
+    | Média           | $\mu$      | $\bar{x}$        |
+    +-----------------+------------+------------------+
+    | Variância       | $\sigma^2$ | $s^2$            |
+    +-----------------+------------+------------------+
+    | Desvio Padrão   | $\sigma$   | $s$              |
+    +-----------------+------------+------------------+
 :::
 
 ------------------------------------------------------------------------
@@ -809,7 +809,7 @@ $$
 ::: {style="font-align: justify; font-size: 0.8em;"}
 <br>
 
--    É a diferença entre o maior e o menor valor observado $$A_t=x_{max}-x_{min}$$
+-   É a diferença entre o maior e o menor valor observado $$A_t=x_{max}-x_{min}$$
 
 <!-- -->
 
