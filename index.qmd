@@ -88,7 +88,7 @@ alt=as_hux(alt)
 top_border(alt)[1,]=0.4
 bottom_border(alt)[4,]=0.4
 set_caption(alt, "Alturas de espigas (cm) de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988")
-alt  
+
 
 ```
 
@@ -103,7 +103,7 @@ alt=as_hux(alt)
 top_border(alt)[1,]=0.4
 bottom_border(alt)[4,]=0.4
 set_caption(alt, "Alturas de espigas (cm) de híbridos de milho para a região de Chapecó, SC - safra: 1987/1988")
-alt  
+
 ```
 
 ## Representação Tabular
@@ -183,7 +183,7 @@ abline(h=0)
 ### Gráficos para variáveis qualitativas - Barras
 
 ```{r echo=TRUE, fig.align='center'}
-barplot(table(dados$Resistencia)[c("r","mr","ms","s")],xlab="Resistência à ferrugem",ylab="Frequências",col="green4",density=50,xlim=c(0,12),horiz = T)
+barplot(table(dados$Resistencia)[c("r","mr","ms","s")],ylab="Resistência à ferrugem",xlab="Frequências",col="green4",density=50,xlim=c(0,12),horiz = T)
 abline(v=0)
 ```
 
@@ -371,17 +371,17 @@ plot(tab,col="green4",density=50,border="black",xlab = "Altura de Plantas",ylab=
 
 -   As medidas descritivas auxiliam a análise do comportamento dos dados. Tais dados são provenientes de uma população ou amostra.
 
-    +-----------------+------------+------------------+
-    | Medidas         | Parâmetros | -   Estatísticas |
-    +:===============:+:==========:+:================:+
-    | Nº de elementos | N          | n                |
-    +-----------------+------------+------------------+
-    | Média           | $\mu$      | $\bar{x}$        |
-    +-----------------+------------+------------------+
-    | Variância       | $\sigma^2$ | $s^2$            |
-    +-----------------+------------+------------------+
-    | Desvio Padrão   | $\sigma$   | $s$              |
-    +-----------------+------------+------------------+
+    +-----------------+---------------+------------------+
+    | Medidas         | Parâmetros    | -   Estatísticas |
+    +:===============:+:=============:+:================:+
+    | Nº de elementos | N             | n                |
+    +-----------------+---------------+------------------+
+    | Média           | $\mu$         | $\bar{x}$        |
+    +-----------------+---------------+------------------+
+    | Variância       | $\sigma^2$    | $s^2$            |
+    +-----------------+---------------+------------------+
+    | Desvio Padrão   | $\sigma$      | $s$              |
+    +-----------------+---------------+------------------+
 :::
 
 ------------------------------------------------------------------------
